@@ -1,17 +1,22 @@
-import { useState } from 'react'
+import React, { useContext } from "react";
+import Login from "./pages/Login";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { AdminContext } from "./context/AdminContext";
 
-import './App.css'
+const App = () => {
+  const { aToken } = useContext(AdminContext);
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
+  return aToken ? (
+    <div>
+      <ToastContainer />
+    </div>
+  ) : (
     <>
-      <div>
-        <h1 className=' text-amber-900'>HEllpo Mohit</h1>
-      </div>
+      <Login />
+      <ToastContainer />
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
